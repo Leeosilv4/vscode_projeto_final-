@@ -1,0 +1,937 @@
+/* VARIÁVEIS E THEME */
+:root {
+    --primary-color: #e74c3c;
+    --secondary-color: #c0392b;
+    --accent-color: #f39c12;
+    --bg-color: #fffdf8;
+    --text-color: #2c3e50;
+    --card-bg: #ffffff;
+    --success-color: #27ae60;
+    --warning-color: #e67e22;
+    --font-main: 'Poppins', sans-serif;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-hover: 0 8px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* RESET MELHORADO */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    font-family: var(--font-main);
+    background: linear-gradient(135deg, #fdfcfb 0%, #fff9f0 100%);
+    color: var(--text-color);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+  
+  /* HEADER MELHORADO */
+  header {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: white;
+    padding: 1.5rem 0;
+    text-align: center;
+    box-shadow: var(--shadow);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  header::before {
+    content: "🍕";
+    position: absolute;
+    font-size: 2rem;
+    opacity: 0.1;
+    animation: float 3s ease-in-out infinite;
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+  
+  /* CONTAINER PRINCIPAL */
+  .main-container {
+    max-width: 1200px;
+    width: 90%;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: var(--card-bg);
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  /* CARDS MELHORADOS */
+  .card-container {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    margin-top: 1rem;
+  }
+  
+  .card {
+    background: var(--card-bg);
+    border-radius: 16px;
+    overflow: hidden;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    padding-bottom: 1.5rem;
+    border: 1px solid #f0f0f0;
+    position: relative;
+  }
+  
+  .card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+  }
+  
+  .card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: var(--shadow-hover);
+  }
+  
+  .card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+  
+  .card:hover img {
+    transform: scale(1.05);
+  }
+  
+  .card h3 {
+    margin: 1rem 0 0.5rem;
+    font-size: 1.3rem;
+    color: var(--text-color);
+  }
+  
+  .card p {
+    font-weight: 600;
+    color: var(--primary-color);
+    font-size: 1.1rem;
+  }
+  
+  /* BOTÕES MELHORADOS */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 12px 24px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 1rem;
+  }
+  
+  .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(231, 76, 60, 0.3);
+  }
+  
+  .btn-secondary {
+    background: linear-gradient(135deg, #95a5a6, #7f8c8d);
+  }
+  
+  .btn-success {
+    background: linear-gradient(135deg, var(--success-color), #229954);
+  }
+  
+  /* CARRINHO ICONE MELHORADO */
+  .carrinho-icone {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, var(--accent-color), #e67e22);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 1000;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .carrinho-icone:hover {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: var(--shadow-hover);
+  }
+  
+  .carrinho-icone .pulse {
+    animation: pulse 0.5s ease-in-out;
+  }
+  
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.3); }
+    100% { transform: scale(1); }
+  }
+  
+  /* CARRINHO E CHECKOUT MELHORADOS */
+  .carrinho, .checkout {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    margin-top: 1rem;
+  }
+  
+  .item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid #ecf0f1;
+    transition: background-color 0.2s ease;
+  }
+  
+  .item:hover {
+    background-color: #f8f9fa;
+  }
+  
+  .item-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+  
+  .item-quantidade {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.3rem;
+  }
+  
+  .quantidade-btn {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+  }
+  
+  /* TOAST MELHORADO */
+  .toast {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--text-color);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    box-shadow: var(--shadow-hover);
+    display: none;
+    z-index: 2000;
+    font-weight: 600;
+    animation: slideUp 0.3s ease;
+  }
+  
+  .toast.sucesso {
+    background: var(--success-color);
+  }
+  
+  .toast.erro {
+    background: var(--primary-color);
+  }
+  
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateX(-50%) translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+  }
+  
+  /* FORMULÁRIOS MELHORADOS */
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  .form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--text-color);
+  }
+  
+  .form-input {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid #ecf0f1;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: #f8f9fa;
+  }
+  
+  .form-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    background: white;
+    box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.1);
+  }
+  
+  /* FOOTER MELHORADO */
+  footer {
+    text-align: center;
+    padding: 2rem;
+    background: linear-gradient(135deg, #2c3e50, #34495e);
+    color: white;
+    margin-top: 3rem;
+  }
+  
+  /* RESPONSIVIDADE MELHORADA */
+  @media (max-width: 768px) {
+    .main-container {
+      width: 95%;
+      padding: 1rem;
+      margin: 1rem auto;
+    }
+    
+    .card-container {
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+    }
+    
+    .carrinho-icone {
+      top: 10px;
+      right: 10px;
+      padding: 10px 16px;
+      font-size: 1rem;
+    }
+    
+    header {
+      padding: 1rem 0;
+    }
+    
+    .btn {
+      padding: 10px 20px;
+      font-size: 0.9rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .card-container {
+      grid-template-columns: 1fr;
+    }
+    
+    .carrinho, .checkout {
+      padding: 1rem;
+    }
+    
+    .item {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+  }
+  
+  /* UTILITY CLASSES */
+  .text-center { text-align: center; }
+  .mt-1 { margin-top: 1rem; }
+  .mb-1 { margin-bottom: 1rem; }
+  .p-1 { padding: 1rem; }
+  .hidden { display: none; }
+  .fade-in { animation: fadeIn 0.5s ease; }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  /* LOADING STATES */
+  .loading {
+    opacity: 0.7;
+    pointer-events: none;
+  }
+  
+  .btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+  }
+  /* ===== MENU MELHORADO ===== */
+.header-content {
+    text-align: center;
+  }
+  
+  .btn-voltar {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255,255,255,0.2);
+    border: none;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-voltar:hover {
+    background: rgba(255,255,255,0.3);
+  }
+  
+  .tamanho-info {
+    margin-bottom: 2rem;
+  }
+  
+  .tamanho-card {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    text-align: center;
+  }
+  
+  .filtros {
+    margin-bottom: 2rem;
+  }
+  
+  .filtro-buttons {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+  }
+  
+  .filtro-btn {
+    padding: 8px 16px;
+    border: 2px solid #e0e0e0;
+    background: white;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+  }
+  
+  .filtro-btn.active {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+  }
+  
+  .card-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: var(--accent-color);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.7rem;
+    font-weight: 600;
+  }
+  
+  .descricao {
+    color: #666;
+    font-size: 0.9rem;
+    margin: 0.5rem 0;
+    min-height: 40px;
+  }
+  
+  .card-preco {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+  }
+  
+  .preco {
+    font-weight: 700;
+    color: var(--primary-color);
+    font-size: 1.1rem;
+  }
+  
+  .btn-adicionar {
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-adicionar.adding {
+    transform: scale(0.95);
+    background: var(--success-color);
+  }
+  
+  .barra-inferior {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    padding: 1rem;
+    box-shadow: 0 -4px 12px rgba(0,0,0,0.1);
+    z-index: 1000;
+  }
+  
+  .barra-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .barra-text {
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
+  
+  /* ===== CARRINHO MELHORADO ===== */
+  .carrinho-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+  
+  .itens-container {
+    margin-bottom: 2rem;
+  }
+  
+  .item-carrinho {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    border-bottom: 1px solid #eee;
+    transition: all 0.3s ease;
+  }
+  
+  .item-carrinho:hover {
+    background: #f8f9fa;
+  }
+  
+  .item-info h4 {
+    margin: 0 0 0.5rem 0;
+    color: var(--text-color);
+  }
+  
+  .item-preco {
+    color: #666;
+    font-size: 0.9rem;
+  }
+  
+  .item-controles {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .quantidade-control {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #f8f9fa;
+    border-radius: 25px;
+    padding: 0.5rem;
+  }
+  
+  .quantidade-btn {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+  }
+  
+  .quantidade {
+    font-weight: 600;
+    min-width: 20px;
+    text-align: center;
+  }
+  
+  .item-total {
+    font-weight: 700;
+    color: var(--primary-color);
+    min-width: 80px;
+    text-align: right;
+  }
+  
+  .btn-remover {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-remover:hover {
+    background: #ffe6e6;
+  }
+  
+  .carrinho-vazio {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 2rem;
+    text-align: center;
+  }
+  
+  .vazio-content .vazio-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+  }
+  
+  .carrinho-resumo {
+    background: #f8f9fa;
+    padding: 2rem;
+    border-radius: 12px;
+  }
+  
+  .resumo-linha {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+  
+  .resumo-linha.total {
+    border-top: 2px solid #ddd;
+    padding-top: 1rem;
+    font-size: 1.2rem;
+  }
+  
+  .acoes-carrinho {
+    display: flex;
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+  
+  .btn-grande {
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    flex: 1;
+  }
+  
+  .info-entrega {
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    border-left: 4px solid var(--success-color);
+  }
+  
+  /* ===== CHECKOUT MELHORADO ===== */
+  .checkout-grid {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: 2rem;
+  }
+  
+  .checkout-col {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .checkout-section {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+  }
+  
+  .resumo-pedido {
+    max-height: 300px;
+    overflow-y: auto;
+    margin-bottom: 1rem;
+  }
+  
+  .resumo-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .resumo-quantidade {
+    background: var(--primary-color);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+  
+  .resumo-nome {
+    flex: 1;
+    margin: 0 1rem;
+  }
+  
+  .resumo-preco {
+    font-weight: 600;
+    color: var(--text-color);
+  }
+  
+  .resumo-total {
+    border-top: 2px solid #eee;
+    padding-top: 1rem;
+  }
+  
+  .form-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .textarea {
+    resize: vertical;
+    min-height: 80px;
+    font-family: inherit;
+  }
+  
+  .pagamento-opcoes {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .pagamento-option {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .pagamento-option:hover {
+    border-color: var(--primary-color);
+  }
+  
+  .pagamento-option input:checked + .pagamento-info {
+    color: var(--primary-color);
+  }
+  
+  .pagamento-option input:checked {
+    border-color: var(--primary-color);
+  }
+  
+  .pagamento-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex: 1;
+  }
+  
+  .pagamento-icon {
+    font-size: 1.5rem;
+  }
+  
+  .pagamento-texto {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .troco-field {
+    margin-top: 1rem;
+    display: none;
+  }
+  
+  .info-entrega-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .info-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+  }
+  
+  .info-icon {
+    font-size: 1.5rem;
+  }
+  
+  .btn-block {
+    width: 100%;
+    text-align: center;
+  }
+  
+  .checkout-aviso {
+    margin-top: 1rem;
+    padding: 1rem;
+    background: #e3f2fd;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    color: #1565c0;
+  }
+  
+  /* ===== RESPONSIVIDADE ===== */
+  @media (max-width: 768px) {
+    .checkout-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .carrinho-header {
+      flex-direction: column;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+    
+    .item-carrinho {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    
+    .item-controles {
+      width: 100%;
+      justify-content: space-between;
+    }
+    
+    .barra-content {
+      flex-direction: column;
+      gap: 1rem;
+      text-align: center;
+    }
+    
+    .btn-voltar {
+      position: relative;
+      left: 0;
+      top: 0;
+      transform: none;
+      margin-bottom: 1rem;
+    }
+    
+    header {
+      text-align: center;
+      padding: 1rem;
+    }
+  }
+  
+  /* ===== ANIMAÇÕES ===== */
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .item-carrinho {
+    animation: slideIn 0.3s ease;
+  }
+  
+  /* ===== ESTADOS ===== */
+  .loading {
+    opacity: 0.7;
+    pointer-events: none;
+  }
+  
+  .vazio {
+    text-align: center;
+    color: #666;
+    padding: 2rem;
+    font-style: italic;
+  }
+  /* Estilos para o carrinho corrigido */
+.pulse {
+    animation: pulse 0.5s ease-in-out;
+  }
+  
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.3); }
+    100% { transform: scale(1); }
+  }
+  
+  .btn-adicionar {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  .btn-adicionar:hover {
+    background: var(--secondary-color);
+    transform: scale(1.05);
+  }
+  
+  .btn-adicionar.adding {
+    background: var(--success-color);
+    transform: scale(0.95);
+  }
+  
+  /* Garantir que os cards sejam clicáveis */
+  .card {
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-2px);
+  }
+  
+  /* Estilos para debug */
+  .debug-info {
+    background: #f0f0f0;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    font-family: monospace;
+    font-size: 12px;
+  }

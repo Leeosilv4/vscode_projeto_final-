@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Manulo Pizzaria - As melhores pizzas da cidade com entrega rápida">
+    <title>Manulo Pizzaria - Início</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>🍕 Manulo Pizzaria</h1>
+        <p>Sabor autêntico em cada fatia!</p>
+    </header>
+
+    <div class="carrinho-icone" onclick="window.location.href='carrinho.html'">
+        🛒 <span id="contador-carrinho">0</span>
+    </div>
+
+    <main class="main-container">
+        <section class="text-center">
+            <h2>Escolha o tamanho da sua pizza</h2>
+            <p class="mt-1">Selecione o tamanho perfeito para sua fome!</p>
+            
+            <div class="card-container">
+                <div class="card" onclick="window.location.href='menu.html?size=pequena'">
+                    <img src="https://images.unsplash.com/photo-1601924638867-3ecbbedd3c6b" alt="Pizza Pequena" loading="lazy">
+                    <h3>Pizza Pequena</h3>
+                    <p>4 fatias - Ideal para 1 pessoa</p>
+                    <div class="btn mt-1">Escolher Sabores</div>
+                </div>
+                
+                <div class="card" onclick="window.location.href='menu.html?size=grande'">
+                    <img src="https://images.unsplash.com/photo-1594007654729-407eedc4be65" alt="Pizza Grande" loading="lazy">
+                    <h3>Pizza Grande</h3>
+                    <p>8 fatias - Perfeita para 2 pessoas</p>
+                    <div class="btn mt-1">Escolher Sabores</div>
+                </div>
+                
+                <div class="card" onclick="window.location.href='menu.html?size=familia'">
+                    <img src="https://images.unsplash.com/photo-1618214886809-5e6e065efb5d" alt="Pizza Família" loading="lazy">
+                    <h3>Pizza Família</h3>
+                    <p>12 fatias - Para a família toda</p>
+                    <div class="btn mt-1">Escolher Sabores</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="text-center">
+            <h2>🚚 Entrega Rápida</h2>
+            <div class="card-container">
+                <div class="card p-1">
+                    <h3>⏱️ 30-40 min</h3>
+                    <p>Tempo médio de entrega</p>
+                </div>
+                <div class="card p-1">
+                    <h3>📍 Toda a cidade</h3>
+                    <p>Entregamos em toda a área urbana</p>
+                </div>
+                <div class="card p-1">
+                    <h3>💳 Múltiplas formas</h3>
+                    <p>Cartão, Pix e Dinheiro</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 Manulo Pizzaria - Sabor em cada fatia 🍕</p>
+        <p>Telefone: (11) 9999-9999 | Horário: 18h-23h</p>
+    </footer>
+
+    <div id="toast"></div>
+
+    <script type="module">
+        import { atualizarCarrinho } from './script.js';
+        atualizarCarrinho();
+        
+        // Adiciona efeito de loading nas imagens
+        document.addEventListener('DOMContentLoaded', function() {
+            const images = document.querySelectorAll('img');
+            images.forEach(img => {
+                img.addEventListener('load', function() {
+                    this.style.opacity = '1';
+                });
+                img.style.opacity = '0';
+                img.style.transition = 'opacity 0.3s ease';
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carrinho - Manulo Pizzaria</title>
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<header>
+  <div class="header-content">
+    <h1>🛒 Seu Carrinho</h1>
+    <p>Revise seus itens antes de finalizar</p>
+  </div>
+  <button class="btn-voltar" onclick="window.location.href='menu.html'">← Voltar</button>
+</header>
+
+<div class="carrinho-icone" onclick="window.location.href='carrinho.html'">
+  🛒 <span id="contador-carrinho">0</span>
+</div>
+
+<main class="main-container">
+  <section class="carrinho">
+    <div class="carrinho-header">
+      <h2>📋 Itens Selecionados</h2>
+      <button class="btn btn-secondary" onclick="window.location.href='menu.html'">
+        ← Continuar Comprando
+      </button>
+    </div>
+
+    <div id="lista-itens" class="itens-container">
+      <!-- Itens serão carregados aqui -->
+    </div>
+
+    <div class="carrinho-vazio" id="carrinho-vazio">
+      <div class="vazio-content">
+        <span class="vazio-icon">🛒</span>
+        <h3>Seu carrinho está vazio</h3>
+        <p>Adicione alguns itens deliciosos!</p>
+        <button class="btn" onclick="window.location.href='menu.html'">
+          Ver Cardápio
+        </button>
+      </div>
+    </div>
+
+    <div class="carrinho-resumo" id="carrinho-resumo" style="display: none;">
+      <div class="resumo-linha">
+        <span>Subtotal:</span>
+        <span id="subtotal">R$ 0,00</span>
+      </div>
+      <div class="resumo-linha">
+        <span>Taxa de entrega:</span>
+        <span id="taxa-entrega">R$ 5,00</span>
+      </div>
+      <div class="resumo-linha total">
+        <span><strong>Total:</strong></span>
+        <span><strong id="total">R$ 0,00</strong></span>
+      </div>
+
+      <div class="acoes-carrinho">
+        <button class="btn btn-success btn-grande" id="finalizar">
+          ✅ Finalizar Pedido
+        </button>
+        <button class="btn btn-secondary" id="limpar">
+          🗑️ Limpar Carrinho
+        </button>
+      </div>
+
+      <div class="info-entrega">
+        <p>🚚 <strong>Entrega em 30-40 minutos</strong></p>
+        <p>💳 <strong>Aceitamos:</strong> Cartão, PIX e Dinheiro</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>© 2025 Manulo Pizzaria - Sabor em cada fatia 🍕</p>
+</footer>
+
+<div id="toast"></div>
+
+<script type="module">
+import { atualizarCarrinho, removerItem, limparCarrinho, obterCarrinho, calcularTotal } from './script.js';
+
+const TAXA_ENTREGA = 5;
+
+// Preços válidos para garantir consistência
+const precosValidos = {
+  "Pizza Calabresa": 15,
+  "Pizza Mussarela": 15,
+  "Pizza Portuguesa": 18,
+  "Pizza Frango c/ Catupiry": 15,
+  "Pizza Quatro Queijos": 20,
+  "Pizza Chocolate": 30,
+  "Pizza Romeu e Julieta": 25,
+  "Borda Catupiry": 7,
+  "Borda Cheddar": 7,
+  "Borda Mista": 10,
+  "Borda Doce": 10,
+  "Adicional Bacon": 5,
+  "Adicional Milho": 2.5
+};
+
+window.carregarCarrinho = function() {
+  console.log('Carregando carrinho...');
+  const carrinho = obterCarrinho();
+  const lista = document.getElementById("lista-itens");
+  const carrinhoVazio = document.getElementById("carrinho-vazio");
+  const carrinhoResumo = document.getElementById("carrinho-resumo");
+  
+  lista.innerHTML = "";
+  
+  console.log('Itens no carrinho:', carrinho);
+  
+  if (carrinho.length === 0) {
+    carrinhoVazio.style.display = 'flex';
+    carrinhoResumo.style.display = 'none';
+    return;
+  }
+  
+  carrinhoVazio.style.display = 'none';
+  carrinhoResumo.style.display = 'block';
+  
+  let subtotal = 0;
+
+  carrinho.forEach((item, index) => {
+    // Usar preço válido ou o preço salvo
+    const precoUnitario = precosValidos[item.name] || item.price || 0;
+    const quantidade = item.quantidade || 1;
+    const precoTotal = precoUnitario * quantidade;
+    subtotal += precoTotal;
+    
+    const div = document.createElement("div");
+    div.classList.add("item-carrinho");
+    div.innerHTML = `
+      <div class="item-info">
+        <h4>${item.name}</h4>
+        <p class="item-preco">R$ ${precoUnitario.toFixed(2).replace(".", ",")} cada</p>
+      </div>
+      <div class="item-controles">
+        <div class="quantidade-control">
+          <button class="quantidade-btn menos" data-index="${index}">−</button>
+          <span class="quantidade">${quantidade}</span>
+          <button class="quantidade-btn mais" data-index="${index}">+</button>
+        </div>
+        <span class="item-total">R$ ${precoTotal.toFixed(2).replace(".", ",")}</span>
+        <button class="btn-remover" data-index="${index}" title="Remover item">
+          🗑️
+        </button>
+      </div>
+    `;
+    lista.appendChild(div);
+  });
+
+  const total = subtotal + TAXA_ENTREGA;
+  
+  document.getElementById("subtotal").textContent = `R$ ${subtotal.toFixed(2).replace(".", ",")}`;
+  document.getElementById("taxa-entrega").textContent = `R$ ${TAXA_ENTREGA.toFixed(2).replace(".", ",")}`;
+  document.getElementById("total").textContent = `R$ ${total.toFixed(2).replace(".", ",")}`;
+  
+  atualizarCarrinho();
+  adicionarEventListeners();
+};
+
+function adicionarEventListeners() {
+  console.log('Adicionando event listeners...');
+  
+  // Botões de quantidade -
+  document.querySelectorAll(".quantidade-btn.menos").forEach(btn => {
+    btn.addEventListener("click", function() {
+      const index = parseInt(this.dataset.index);
+      const carrinho = obterCarrinho();
+      if (carrinho[index].quantidade > 1) {
+        carrinho[index].quantidade--;
+        localStorage.setItem("carrinho", JSON.stringify(carrinho));
+        window.carregarCarrinho();
+      }
+    });
+  });
+
+  // Botões de quantidade +
+  document.querySelectorAll(".quantidade-btn.mais").forEach(btn => {
+    btn.addEventListener("click", function() {
+      const index = parseInt(this.dataset.index);
+      const carrinho = obterCarrinho();
+      carrinho[index].quantidade = (carrinho[index].quantidade || 1) + 1;
+      localStorage.setItem("carrinho", JSON.stringify(carrinho));
+      window.carregarCarrinho();
+    });
+  });
+
+  // Botão remover
+  document.querySelectorAll(".btn-remover").forEach(btn => {
+    btn.addEventListener("click", function() {
+      const index = parseInt(this.dataset.index);
+      console.log('Removendo item:', index);
+      removerItem(index);
+    });
+  });
+
+  // Limpar carrinho
+  document.getElementById("limpar").addEventListener("click", () => {
+    if (confirm("Tem certeza que deseja esvaziar o carrinho?")) {
+      limparCarrinho();
+    }
+  });
+
+  // Finalizar pedido
+  document.getElementById("finalizar").addEventListener("click", () => {
+    const carrinho = obterCarrinho();
+    if (carrinho.length === 0) {
+      alert("Seu carrinho está vazio!");
+      return;
+    }
+    window.location.href = "checkout.html";
+  });
+}
+
+// Inicializar quando a página carregar
+document.addEventListener('DOMContentLoaded', function() {
+  console.log('DOM carregado, inicializando carrinho...');
+  window.carregarCarrinho();
+});
+
+// Também inicializar quando a window carregar
+window.addEventListener('load', function() {
+  console.log('Window carregada, inicializando carrinho...');
+  window.carregarCarrinho();
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cardápio - Manulo Pizzaria</title>
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<header>
+  <div class="header-content">
+    <h1>🍕 Cardápio de Pizzas</h1>
+    <p>Escolha seus sabores favoritos!</p>
+  </div>
+  <button class="btn-voltar" onclick="window.history.back()">← Voltar</button>
+</header>
+
+<div class="carrinho-icone" onclick="window.location.href='carrinho.html'">
+  🛒 <span id="contador-carrinho">0</span>
+</div>
+
+<main class="main-container">
+  <!-- Tamanho Selecionado -->
+  <section class="tamanho-info">
+    <div class="tamanho-card" id="info-tamanho">
+      <h3>Tamanho: <span id="tamanho-selecionado">Grande</span></h3>
+      <p id="info-fatias">8 fatias</p>
+      <button class="btn btn-secondary" onclick="window.location.href='index.html'">Alterar Tamanho</button>
+    </div>
+  </section>
+
+  <!-- Filtros -->
+  <section class="filtros">
+    <h2>Filtrar por:</h2>
+    <div class="filtro-buttons">
+      <button class="filtro-btn active" data-categoria="todos">Todos</button>
+      <button class="filtro-btn" data-categoria="salgadas">Salgadas</button>
+      <button class="filtro-btn" data-categoria="doces">Doces</button>
+      <button class="filtro-btn" data-categoria="bordas">Bordas</button>
+      <button class="filtro-btn" data-categoria="adicionais">Adicionais</button>
+    </div>
+  </section>
+
+  <!-- Sabores de Pizza -->
+  <section class="categoria" data-categoria="salgadas">
+    <h2>🍕 Sabores de Pizza</h2>
+    <div class="card-container">
+      <div class="card" data-name="Pizza Calabresa" data-price="15" data-categoria="salgadas">
+        <div class="card-badge">Mais Pedida</div>
+        <img src="https://images.unsplash.com/photo-1628840042765-356cda84e40f" alt="Pizza Calabresa" loading="lazy">
+        <h3>Calabresa</h3>
+        <p class="descricao">Calabresa fatiada, cebola e azeitonas</p>
+        <div class="card-preco">
+          <span class="preco">R$ 15,00</span>
+          <button class="btn btn-adicionar">
+            <span class="btn-text">Adicionar</span>
+            <span class="btn-icon">+</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="card" data-name="Pizza Mussarela" data-price="15" data-categoria="salgadas">
+        <img src="https://images.unsplash.com/photo-1600628422019-72f8e82f392f" alt="Pizza Mussarela" loading="lazy">
+        <h3>Mussarela</h3>
+        <p class="descricao">Mussarela derretida e tomate</p>
+        <div class="card-preco">
+          <span class="preco">R$ 15,00</span>
+          <button class="btn btn-adicionar">
+            <span class="btn-text">Adicionar</span>
+            <span class="btn-icon">+</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="card" data-name="Pizza Portuguesa" data-price="18" data-categoria="salgadas">
+        <img src="https://images.unsplash.com/photo-1613145993485-64c3021bcee6" alt="Pizza Portuguesa" loading="lazy">
+        <h3>Portuguesa</h3>
+        <p class="descricao">Presunto, ovos, cebola e azeitonas</p>
+        <div class="card-preco">
+          <span class="preco">R$ 18,00</span>
+          <button class="btn btn-adicionar">
+            <span class="btn-text">Adicionar</span>
+            <span class="btn-icon">+</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="card" data-name="Pizza Frango c/ Catupiry" data-price="15" data-categoria="salgadas">
+        <div class="card-badge">Recomendado</div>
+        <img src="https://images.unsplash.com/photo-1601924582975-7c31c8ddc9e6" alt="Pizza Frango Catupiry" loading="lazy">
+        <h3>Frango c/ Catupiry</h3>
+        <p class="descricao">Frango desfiado e catupiry cremoso</p>
+        <div class="card-preco">
+          <span class="preco">R$ 15,00</span>
+          <button class="btn btn-adicionar">
+            <span class="btn-text">Adicionar</span>
+            <span class="btn-icon">+</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="card" data-name="Pizza Quatro Queijos" data-price="20" data-categoria="salgadas">
+        <img src="https://images.unsplash.com/photo-1603073224594-49b69ed8da56" alt="Pizza Quatro Queijos" loading="lazy">
+        <h3>Quatro Queijos</h3>
+        <p class="descricao">Mussarela, parmesão, gorgonzola e catupiry</p>
+        <div class="card-preco">
+          <span class="preco">R$ 20,00</span>
+          <button class="btn btn-adicionar">
+            <span class="btn-text">Adicionar</span>
+            <span class="btn-icon">+</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pizzas Doces -->
+  <section class="categoria" data-categoria="doces">
+    <h2>🍫 Pizzas Doces</h2>
+    <div class="card-container">
+      <div class="card" data-name="Pizza Chocolate" data-price="30" data-categoria="doces">
+        <div class="card-badge">Doce</div>
+        <img src="https://images.unsplash.com/photo-1618213837799-fd98c2df8936" alt="Pizza Chocolate" loading="lazy">
+        <h3>Chocolate</h3>
+        <p class="descricao">Chocolate preto e morangos</p>
+        <div class="card-preco">
+          <span class="preco">R$ 30,00</span>
+          <button class="btn btn-adicionar">
+            <span class="btn-text">Adicionar</span>
+            <span class="btn-icon">+</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="card" data-name="Pizza Romeu e Julieta" data-price="25" data-categoria="doces">
+        <div class="card-badge">Doce</div>
+        <img src="https://images.unsplash.com/photo-1595708684082-a173bb3a06c5" alt="Pizza Romeu e Julieta" loading="lazy">
+        <h3>Romeu e Julieta</h3>
+        <p class="descricao">Goiabada e queijo minas</p>
+        <div class="card-preco">
+          <span class="preco">R$ 25,00</span>
+          <button class="btn btn-adicionar">
+            <span class="btn-text">Adicionar</span>
+            <span class="btn-icon">+</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bordas Recheadas -->
+  <section class="categoria" data-categoria="bordas">
+    <h2>🧀 Bordas Recheadas</h2>
+    <div class="card-container">
+      <div class="card" data-name="Borda Catupiry" data-price="7" data-categoria="bordas">
+        <img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092" alt="Borda de Catupiry" loading="lazy">
+        <h3>Catupiry</h3>
+        <p class="descricao">Cremosa e saborosa</p>
+        <div class="card-preco">
+          <span class="preco">R$ 7,00</span>
+          <button class="btn btn-adicionar">
+            <span class="btn-text">Adicionar</span>
+            <span class="btn-icon">+</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="card" data-name="Borda Cheddar" data-price="7" data-categoria="bordas">
+        <img src="https://images.unsplash.com/photo-1614608681621-808b85e05c2e" alt="Borda Cheddar" loading="lazy">
+        <h3>Cheddar</h3>
+        <p class="descricao">Cheddar derretido</p>
+        <div class="card-preco">
+          <span class="preco">R$ 7,00</span>
+          <button class="btn btn-adicionar">
+            <span class="btn-text">Adicionar</span>
+            <span class="btn-icon">+</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Adicionais -->
+  <section class="categoria" data-categoria="adicionais">
+    <h2>🥓 Adicionais</h2>
+    <div class="card-container">
+      <div class="card" data-name="Adicional Bacon" data-price="5" data-categoria="adicionais">
+        <img src="https://images.unsplash.com/photo-1625949275205-60c9bdbd37db" alt="Adicional Bacon" loading="lazy">
+        <h3>Bacon</h3>
+        <p class="descricao">Bacon crocante</p>
+        <div class="card-preco">
+          <span class="preco">R$ 5,00</span>
+          <button class="btn btn-adicionar">
+            <span class="btn-text">Adicionar</span>
+            <span class="btn-icon">+</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="card" data-name="Adicional Milho" data-price="2.5" data-categoria="adicionais">
+        <img src="https://images.unsplash.com/photo-1625949275229-35ea9bb4e7bd" alt="Adicional Milho" loading="lazy">
+        <h3>Milho</h3>
+        <p class="descricao">Milho verde</p>
+        <div class="card-preco">
+          <span class="preco">R$ 2,50</span>
+          <button class="btn btn-adicionar">
+            <span class="btn-text">Adicionar</span>
+            <span class="btn-icon">+</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Barra Fixa Inferior -->
+  <div class="barra-inferior">
+    <div class="barra-content">
+      <span class="barra-text"><span id="contador-bar">0</span> itens no carrinho</span>
+      <button class="btn btn-success" onclick="window.location.href='carrinho.html'">
+        Ver Carrinho 🛒
+      </button>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <p>© 2025 Manulo Pizzaria - Sabor em cada fatia 🍕</p>
+</footer>
+
+<div id="toast"></div>
+
+<script type="module">
+import { adicionarCarrinho, atualizarCarrinho, obterCarrinho } from './script.js';
+
+// Inicialização
+atualizarCarrinho();
+
+// Obter tamanho da URL
+const urlParams = new URLSearchParams(window.location.search);
+const tamanho = urlParams.get('size') || 'grande';
+const tamanhos = {
+  pequena: { nome: 'Pequena', fatias: '4 fatias', multiplicador: 1 },
+  grande: { nome: 'Grande', fatias: '8 fatias', multiplicador: 1.5 },
+  familia: { nome: 'Família', fatias: '12 fatias', multiplicador: 2 }
+};
+
+// Atualizar info do tamanho
+document.getElementById('tamanho-selecionado').textContent = tamanhos[tamanho].nome;
+document.getElementById('info-fatias').textContent = tamanhos[tamanho].fatias;
+
+// Filtros
+document.querySelectorAll('.filtro-btn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.filtro-btn').forEach(b => b.classList.remove('active'));
+    this.classList.add('active');
+    
+    const categoria = this.dataset.categoria;
+    document.querySelectorAll('.categoria').forEach(sec => {
+      if (categoria === 'todos' || sec.dataset.categoria === categoria) {
+        sec.style.display = 'block';
+      } else {
+        sec.style.display = 'none';
+      }
+    });
+  });
+});
+
+// Adicionar ao carrinho
+document.querySelectorAll('.btn-adicionar').forEach(btn => {
+  btn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    const card = this.closest('.card');
+    const name = card.dataset.name;
+    const price = parseFloat(card.dataset.price);
+    
+    // Efeito visual
+    this.classList.add('adding');
+    setTimeout(() => this.classList.remove('adding'), 500);
+    
+    adicionarCarrinho(name, price);
+    atualizarBarraInferior();
+  });
+});
+
+// Atualizar barra inferior
+function atualizarBarraInferior() {
+  const carrinho = obterCarrinho();
+  const totalItens = carrinho.reduce((total, item) => total + item.quantidade, 0);
+  document.getElementById('contador-bar').textContent = totalItens;
+}
+
+// Clique no card
+document.querySelectorAll('.card').forEach(card => {
+  card.addEventListener('click', function(e) {
+    if (!e.target.closest('.btn-adicionar')) {
+      const btn = this.querySelector('.btn-adicionar');
+      btn.click();
+    }
+  });
+});
+
+atualizarBarraInferior();
+</script>
+</body>
+</html>
