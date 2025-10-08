@@ -13,7 +13,6 @@
     --shadow-hover: 0 8px 15px rgba(0, 0, 0, 0.2);
   }
   
-  /* RESET MELHORADO */
   * {
     margin: 0;
     padding: 0;
@@ -32,7 +31,6 @@
     min-height: 100vh;
   }
   
-  /* HEADER MELHORADO */
   header {
     background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
     color: white;
@@ -56,7 +54,6 @@
     50% { transform: translateY(-10px); }
   }
   
-  /* CONTAINER PRINCIPAL */
   .main-container {
     max-width: 1200px;
     width: 90%;
@@ -70,7 +67,6 @@
     gap: 2rem;
   }
   
-  /* CARDS MELHORADOS */
   .card-container {
     display: grid;
     gap: 1.5rem;
@@ -128,7 +124,6 @@
     font-size: 1.1rem;
   }
   
-  /* BOTÕES MELHORADOS */
   .btn {
     display: inline-flex;
     align-items: center;
@@ -159,7 +154,6 @@
     background: linear-gradient(135deg, var(--success-color), #229954);
   }
   
-  /* CARRINHO ICONE MELHORADO */
   .carrinho-icone {
     position: fixed;
     top: 20px;
@@ -194,7 +188,6 @@
     100% { transform: scale(1); }
   }
   
-  /* CARRINHO E CHECKOUT MELHORADOS */
   .carrinho, .checkout {
     background: var(--card-bg);
     padding: 2rem;
@@ -243,7 +236,6 @@
     font-size: 0.8rem;
   }
   
-  /* TOAST MELHORADO */
   .toast {
     position: fixed;
     bottom: 30px;
@@ -279,7 +271,6 @@
     }
   }
   
-  /* FORMULÁRIOS MELHORADOS */
   .form-group {
     margin-bottom: 1.5rem;
   }
@@ -308,7 +299,6 @@
     box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.1);
   }
   
-  /* FOOTER MELHORADO */
   footer {
     text-align: center;
     padding: 2rem;
@@ -317,7 +307,6 @@
     margin-top: 3rem;
   }
   
-  /* RESPONSIVIDADE MELHORADA */
   @media (max-width: 768px) {
     .main-container {
       width: 95%;
@@ -363,7 +352,6 @@
     }
   }
   
-  /* UTILITY CLASSES */
   .text-center { text-align: center; }
   .mt-1 { margin-top: 1rem; }
   .mb-1 { margin-bottom: 1rem; }
@@ -376,7 +364,6 @@
     to { opacity: 1; }
   }
   
-  /* LOADING STATES */
   .loading {
     opacity: 0.7;
     pointer-events: none;
@@ -387,7 +374,6 @@
     cursor: not-allowed;
     transform: none !important;
   }
-  /* ===== MENU MELHORADO ===== */
 .header-content {
     text-align: center;
   }
@@ -518,7 +504,6 @@
     font-size: 1.1rem;
   }
   
-  /* ===== CARRINHO MELHORADO ===== */
   .carrinho-header {
     display: flex;
     justify-content: space-between;
@@ -659,7 +644,6 @@
     border-left: 4px solid var(--success-color);
   }
   
-  /* ===== CHECKOUT MELHORADO ===== */
   .checkout-grid {
     display: grid;
     grid-template-columns: 1fr 400px;
@@ -854,7 +838,6 @@
     }
   }
   
-  /* ===== ANIMAÇÕES ===== */
   @keyframes slideIn {
     from {
       opacity: 0;
@@ -870,7 +853,6 @@
     animation: slideIn 0.3s ease;
   }
   
-  /* ===== ESTADOS ===== */
   .loading {
     opacity: 0.7;
     pointer-events: none;
@@ -882,7 +864,6 @@
     padding: 2rem;
     font-style: italic;
   }
-  /* Estilos para o carrinho corrigido */
 .pulse {
     animation: pulse 0.5s ease-in-out;
   }
@@ -916,7 +897,6 @@
     transform: scale(0.95);
   }
   
-  /* Garantir que os cards sejam clicáveis */
   .card {
     cursor: pointer;
     transition: transform 0.2s ease;
@@ -926,7 +906,7 @@
     transform: translateY(-2px);
   }
   
-  /* Estilos para debug */
+ 
   .debug-info {
     background: #f0f0f0;
     padding: 10px;
